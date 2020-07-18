@@ -1,0 +1,10 @@
+{
+  "SECRET_KEY": "whatever",
+  "DEBUG": true,
+  "WHICH_DB": "postgresql",
+  "DB_NAME": "covid",
+  "DB_USER": "coviduser",
+  "DB_PASSWORD": "whatever",
+  "ALLOWED_HOSTS": ["localhost"],
+  "EXTRA_APPS": ["apps.stats", "apps.login"]
+}

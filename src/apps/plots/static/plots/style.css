@@ -1,0 +1,267 @@
+a.modify-condensed {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 25px;
+    border-radius: 5px;
+    background-color: #34aa66;
+}
+
+button.mark-read {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 300px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 40px;
+    border-radius: 8px;
+    color: white;
+    background-color: #ff5566;
+}
+
+input {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 300px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 40px;
+    border-radius: 8px;
+    color: black;
+    background-color: #ccddff;
+}
+
+label {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 300px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 40px;
+    border-radius: 8px;
+    color: black;
+    background-color: #ffffff;
+}
+
+.add-book label {
+    border: none;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    height: 100px;
+    line-height: 100px;
+    font-size: 40px;
+    border-radius: 8px;
+    color: black;
+    padding: 2px 8px;
+    background-color: #ffffff;
+}
+
+.add-book input {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 900px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 40px;
+    border-radius: 8px;
+    color: black;
+    background-color: #eaeaff;
+}
+
+input.submit {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 300px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 40px;
+    border-radius: 8px;
+    background-color: #34aa66;
+}
+
+.stats-book-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 0.1fr;
+    justify-items: center;
+    grid-gap: 10px;
+    font-size: 35px;
+}
+
+
+.top-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    justify-items: center;
+    grid-gap: 5px;
+}
+
+.home-color {
+    color: #ffffff;
+    background-color: #718380;
+}
+
+.stats-color {
+    color: #ffffff;
+    background-color: #8f2d56;
+}
+
+.index-color {
+    color: #ffffff;
+    background-color: #4ea7ff;
+}
+
+.sagas-color {
+    color: #ffffff;
+    background-color: #d81159;
+}
+
+.add-color {
+    color: #ffffff;
+    background-color: #218380;
+}
+
+.top-buttons-grid a {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    font-size: 40;
+    border-radius: 10px;
+}
+
+.saga-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    grid-gap: 10px;
+    margin-bottom: 20px;
+    margin-left: 10;
+    margin-right: 10;
+}
+
+.book-detail-grid {
+    display: grid;
+    grid-template-columns: 0.3fr 0.7fr;
+    justify-items: center;
+    grid-gap: 10px;
+    font-size: 35px;
+}
+
+.index-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 0.5fr;
+    justify-items: center;
+    grid-gap: 10px;
+    font-size: 25px;
+}
+
+.stats-book-grid-book {
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    border-radius: 15px;
+    background-color: #ceecff;
+    height: 50px;
+    //line-height: 50px;
+}
+
+.saga-head {
+    border: none;
+    color: #ffffff;
+    background-color: #304b8e;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    width: 50%;
+    font-size: 25;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 15;
+    padding-top: 5;
+    padding-bottom: 5;
+}
+
+.saga-grid div {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    font-size: 20;
+    padding-top: 3;
+    padding-bottom: 3;
+    border-radius: 5px;
+    background-color: #ff44aa;
+}
+
+div.read {
+    background-color: #59cb92;
+}
+
+div.reading {
+    background-color: #95b8d1;
+}
+
+div.owned {
+    background-color: #88a9e6;
+}
+
+div.not-owned {
+    color: #666666;
+    background-color: #feeeee;
+}
+
+button.toggle {
+    border: none;
+    color: #ccffcc;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 80%;
+    background-color: transparent;
+}
+
+.header {
+    justify-self: stretch;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 30px;
+    background-color: #7766ff;
+    color: white;
+    margin-bottom: 10;
+    padding: 5;
+    padding-left: 15;
+    margin-left: 10;
+    margin-right: 10;
+}
+
+.book-progress-plot {
+    height: 500px;
+}
