@@ -1,0 +1,10 @@
+.top-grid {
+    display: grid;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    grid-template-columns: auto 1fr auto;
+    justify-items: center;
+    grid-gap: 2px;
+}
+

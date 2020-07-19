@@ -1,19 +1,6 @@
-<div class="btn-group ml-3 col-0">
-    {% if books_stats_active %}
-        <a class="btn btn-primary btn-lg" href="{% url 'books:stats' %}">Stats</a>
-    {% else %}
-        <a class="btn btn-secondary btn-lg" href="{% url 'books:stats' %}">Stats</a>
-    {% endif %}
-    {% if books_index_active %}
-        <a class="btn btn-primary btn-lg" href="{% url 'books:index' %}">Index</a>
-    {% else %}
-        <a class="btn btn-secondary btn-lg" href="{% url 'books:index' %}">Index</a>
-    {% endif %}
-    {% if books_sagas_active %}
-        <a class="btn btn-primary btn-lg" href="{% url 'books:sagas' %}">Sagas</a>
-    {% else %}
-        <a class="btn btn-secondary btn-lg" href="{% url 'books:sagas' %}">Sagas</a>
-    {% endif %}
-    <a class="btn btn-secondary btn-lg" href="{% url 'books:start_book' %}">Start</a>
-    <a class="btn btn-secondary btn-lg" href="{% url 'books:add_book' %}">Add</a>
+<div class="btn-group ml-3">
+    <a class="btn {% if insert_active %}btn-primary{% else %}btn-secondary{% endif %} btn-lg"
+       href="{% url 'plots:main' %}">Insert</a>
+    <a class="btn {% if plot_active %}btn-primary{% else %}btn-secondary{% endif %} btn-lg"
+       href="{% url 'plots:main' %}">Plot</a>
 </div>

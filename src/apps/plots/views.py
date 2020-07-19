@@ -7,6 +7,7 @@ def main(request):
     """Main view."""
 
     context = {
+        "insert_active": True,
     }
 
     return render(request, "plots/main.html", context)

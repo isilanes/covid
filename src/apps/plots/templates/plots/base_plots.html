@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'plots/css/plots.css' %}" />
+<script src="{% static 'plots/js/plots.js' %}"></script>
+{% endblock %}
+
+{% block top_right %}
+{% include "plots/plots_menu.html" %}
+{% include "covid_menu.html" %}
+{% endblock %}

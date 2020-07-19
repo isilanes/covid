@@ -28,22 +28,24 @@
 </head>
 
 <body>
-    <div class="top-menu-grid">
-        {% block top_left %}
-        {% endblock %}
+    <div class="top-grid">
+        <div>
+            {% block top_left %}
+            {% endblock %}
+        </div>
 
-        <div></div>
+        <div>
+            {% block top_middle %}
+            {% endblock %}
+        </div>
 
-        {% block top_middle %}
-        {% endblock %}
-
-        <div></div>
-
-        {% block top_right %}
-        {% endblock %}
+        <div>
+            {% block top_right %}
+            {% endblock %}
+        </div>
     </div>
 
-    <div style="width: 90%; margin-left: 5%;">
+    <div class="ml-2 mr-2">
         {% block body %}
         {% endblock %}
     </div>
