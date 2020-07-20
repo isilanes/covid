@@ -8,7 +8,7 @@ class Country(models.Model):
         return self.name
 
 
-class Datum(models.Model):
+class DataPoint(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     date = models.DateField("Date")
     cases = models.IntegerField("Cases", default=0)

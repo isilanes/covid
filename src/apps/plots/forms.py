@@ -1,9 +1,10 @@
 from django import forms
 
-from .models import Country, Datum
+from .models import Country, DataPoint
 
 
 class CountryForm(forms.ModelForm):
+
     class Meta:
         model = Country
         fields = ["name"]
@@ -15,12 +16,11 @@ class CountryForm(forms.ModelForm):
         country.save()
 
 
-class DatumForm(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["date"].widget = forms.SelectDateWidget()
+class DataPointForm(forms.ModelForm):
 
     class Meta:
-        model = Datum
+        model = DataPoint
+        widgets = {
+            "date": forms.DateInput(format="%Y-%m-%d"),
+        }
         fields = ["country", "date", "cases", "deaths", "recoveries"]

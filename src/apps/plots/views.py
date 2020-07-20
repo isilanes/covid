@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 from .models import Country
-from .forms import CountryForm, DatumForm
+from .forms import CountryForm, DataPointForm
 
 
 @login_required
@@ -28,7 +28,7 @@ def handle_insert_get(request):
     context = {
         "insert_active": True,
         "country_form": CountryForm(),
-        "datum_form": DatumForm(initial=initial),
+        "datum_form": DataPointForm(initial=initial),
         "countries": Country.objects.order_by("name"),
     }
 
