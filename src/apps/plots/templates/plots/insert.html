@@ -7,4 +7,17 @@ Plots
 {% endblock %}
 
 {% block body %}
+<div class="ml-3">Add country</div>
+<div class="ml-3 mt-3">
+    <form method="POST">
+        {% csrf_token %}
+        {{country_form}}
+        <button class="btn btn-success ml-1" name="country_form" value="true" type="submit">Add</button>
+    </form>
+</div>
+<ul>
+    {% for country in countries %}
+    <li>{{country}}</li>
+    {% endfor %}
+</ul>
 {% endblock %}
