@@ -10,7 +10,7 @@ class Country(models.Model):
 
 class Datum(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    date = models.DateTimeField("Date")
+    date = models.DateField("Date")
     cases = models.IntegerField("Cases", default=0)
     deaths = models.IntegerField("Deaths", default=0)
     recoveries = models.IntegerField("Recoveries", default=0)

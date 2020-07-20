@@ -1,8 +1,10 @@
+from datetime import datetime
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 from .models import Country
-from .forms import CountryForm
+from .forms import CountryForm, DatumForm
 
 
 @login_required
@@ -19,9 +21,14 @@ def insert(request):
 @login_required
 def handle_insert_get(request):
 
+    initial = {
+        "date": datetime.now(),
+    }
+
     context = {
         "insert_active": True,
         "country_form": CountryForm(),
+        "datum_form": DatumForm(initial=initial),
         "countries": Country.objects.order_by("name"),
     }
 
