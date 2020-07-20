@@ -18,7 +18,7 @@ CoVid-19
 {% block body %}
 <div>
     {% if user.is_authenticated %}
-        <a class="btn btn-secondary btn-lg" href="{% url 'plots:main' %}">Plots</a>
+        <a class="btn btn-secondary btn-lg" href="{% url 'plots:show' %}">Plots</a>
     {% else %}
         <a class="btn btn-success btn-lg" href="{% url 'login' %}">Log in</a>
     {% endif %}

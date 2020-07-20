@@ -1,6 +1,6 @@
 <div class="btn-group ml-3">
+    <a class="btn {% if show_active %}btn-primary{% else %}btn-secondary{% endif %} btn-lg"
+       href="{% url 'plots:show' %}">Show</a>
     <a class="btn {% if insert_active %}btn-primary{% else %}btn-secondary{% endif %} btn-lg"
-       href="{% url 'plots:main' %}">Insert</a>
-    <a class="btn {% if plot_active %}btn-primary{% else %}btn-secondary{% endif %} btn-lg"
-       href="{% url 'plots:main' %}">Plot</a>
+       href="{% url 'plots:insert' %}">Insert</a>
 </div>

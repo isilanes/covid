@@ -7,5 +7,6 @@ app_name = "plots"
 
 
 urlpatterns = [
-    path('', views.main, name="main"),
+    path('', views.show, name="show"),
+    path('insert', views.insert, name="insert"),
 ]
