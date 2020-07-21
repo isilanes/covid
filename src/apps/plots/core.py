@@ -1,5 +1,10 @@
+import bs4
+
 import plotly.graph_objects as go
 from plotly.offline import plot as offplot
+
+
+PLOTLY_PLOT_ID = "plotly-plot-id"
 
 
 def get_progress_plot_div():
@@ -10,27 +15,6 @@ def get_progress_plot_div():
     figure.update_layout(
         showlegend=True,
     )
-
-    for country in ["Spain"]:
-        x_country = [1, 2, 3, 4]
-        y_country = [1, 4, 9, 16]
-
-        country_trace = go.Scatter(
-            x=x_country,
-            y=y_country,
-            mode='lines+text',
-            marker={
-                "size": 10,
-                "color": 'rgba(0, 0, 200, 1.0)',
-            },
-            line={
-                "color": 'green',
-                "dash": "dash",
-            },
-            textposition="top right",
-            hoverinfo='x+y',
-        )
-        figure.add_trace(country_trace)
 
     config = {
         "displayModeBar": True,
@@ -43,4 +27,20 @@ def get_progress_plot_div():
         "scrollZoom": False,
     }
 
-    return offplot(figure, output_type="div", include_plotlyjs=False, config=config)
+    div = offplot(figure, output_type="div", include_plotlyjs=False, config=config)
+
+    return insert_custom_plotly_id(div)
+
+
+def insert_custom_plotly_id(plotly_div):
+    """
+    Substitute automatically-generated ID with custom one.
+    Return original div if no substitution happened.
+    """
+    soup = bs4.BeautifulSoup(plotly_div, features="html.parser")
+    div = soup.div.div
+    if div is not None:
+        old_id = soup.div.div["id"]
+        return plotly_div.replace(old_id, PLOTLY_PLOT_ID)
+
+    return plotly_div
