@@ -3,6 +3,7 @@ from datetime import datetime
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
+from . import core
 from .models import Country
 from .forms import CountryForm, DataPointForm
 
@@ -48,6 +49,7 @@ def handle_insert_country_post(request):
 def show(request):
     context = {
         "show_active": True,
+        "cases_plot": core.get_progress_plot_div(),
     }
 
     return render(request, "plots/show.html", context)

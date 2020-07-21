@@ -35,8 +35,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
-# Get extra apps either from JSON config:
 EXTRA_APPS = conf.get("EXTRA_APPS", [])
 INSTALLED_APPS += EXTRA_APPS
 
