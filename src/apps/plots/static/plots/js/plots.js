@@ -1,9 +1,27 @@
 $(document).ready(function() {
+});
+
+// See: https://simonwillison.net/2004/May/26/addLoadEvent/
+function addLoadEvent(func) {
+  var old_onload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (old_onload) {
+        old_onload();
+      }
+      func();
+    }
+  }
+};
+
+function on_plot_view_load() {
     let graph = document.getElementById("plotly-plot-id");
     if (graph != null) {
         plot_country(graph);
     };
-});
+};
 
 async function plot_country(graph) {
     let x = [1, 2, 3];
