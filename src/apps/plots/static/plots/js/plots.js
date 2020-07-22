@@ -24,31 +24,34 @@ function on_plot_view_load() {
 };
 
 async function plot_country(graph) {
-    let x = [1, 2, 3];
-    //let y = [1, 4, 9];
-    let country_data = await get_country_data();
-    let y = country_data.y
+    let x = [0, 1, 2, 3, 4, 5];
 
-    var scatter_points = {
-        x: x,
-        y: y,
-        mode: 'lines+markers',
-        marker: {
-            size: 6,
-            type: 'scatter',
-        },
-        line: {
-            size: 3,
-            dash: "dash",
-        }
+    for (let i = 2; i < 4; i++) {
+        let country_data = await get_country_data(i);
+
+        let scatter_points = {
+            x: x,
+            y: country_data.y,
+            mode: 'lines+markers',
+            marker: {
+                size: 6,
+                type: 'scatter',
+            },
+            line: {
+                size: 3,
+                dash: "dash",
+            }
+        };
+        graph.data = graph.data.concat(scatter_points)
     };
-    data = graph.data.concat(scatter_points)
 
-    Plotly.react(graph, data, graph.layout, graph.config)
+    Plotly.react(graph, graph.data, graph.layout, graph.config)
 };
 
-async function get_country_data() {
-    let payload = {};
+async function get_country_data(i) {
+    let payload = {
+        "exponent": i,
+    };
     let response = await fetch("/plots/get_country_data",
         {
             method: "POST",
