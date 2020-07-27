@@ -14,9 +14,8 @@ def get_country_data(request):
     if request.method == "POST":
         payload = request.POST.get("payload", {})
         payload = json.loads(payload)
-        exponent = payload["exponent"]
-        response = {
-            "y": [i**exponent for i in range(6)],
-        }
+        country_list = payload["country_list"]
+        for country_name in country_list:
+            response[country_name] = [i**country_name for i in range(6)]
 
     return JsonResponse(response)

@@ -17,21 +17,28 @@ function addLoadEvent(func) {
 };
 
 function on_plot_view_load() {
-    let graph = document.getElementById("plotly-plot-id");
-    if (graph != null) {
-        plot_country(graph);
-    };
+    plot_countries([]);
 };
 
-async function plot_country(graph) {
+async function plot_countries(country_list) {
+    let graph = document.getElementById("plotly-plot-id");
+
+    if (graph == null) {
+        return
+    };
+
+    // Delete all existing traces/data (if any).
+    Plotly.react(graph, [], graph.layout, graph.config)
+
     let x = [0, 1, 2, 3, 4, 5];
+    let country_list_data = await get_country_list_data(country_list);
 
-    for (let i = 2; i < 4; i++) {
-        let country_data = await get_country_data(i);
-
+    for (let i = 0; i < country_list.length; i++) {
+        let country_name = country_list[i];
+        let country_data = country_list_data[country_name];
         let scatter_points = {
             x: x,
-            y: country_data.y,
+            y: country_data,
             mode: 'lines+markers',
             marker: {
                 size: 6,
@@ -45,12 +52,13 @@ async function plot_country(graph) {
         graph.data = graph.data.concat(scatter_points)
     };
 
+    // Plot new data:
     Plotly.react(graph, graph.data, graph.layout, graph.config)
 };
 
-async function get_country_data(i) {
+async function get_country_list_data(country_list) {
     let payload = {
-        "exponent": i,
+        "country_list": country_list,
     };
     let response = await fetch("/plots/get_country_data",
         {
@@ -76,9 +84,11 @@ function toggle_country(country_name) {
     let country_list = [];
     for (let i = 0; i < all_countries.length; i++) {
         let current_name = all_countries[i];
-        if (country_button_is_active_for(country_name)) {
+        if (country_button_is_active_for(current_name)) {
+            country_list.push(current_name);
         };
     };
+    plot_countries(country_list);
 };
 
 function country_button_for(country_name) {
