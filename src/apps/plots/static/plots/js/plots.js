@@ -65,3 +65,44 @@ async function get_country_data(i) {
 
     return JSON.parse(response_txt);
 };
+
+function toggle_country(country_name) {
+    // Toggle this button:
+    toggle_country_button_for(country_name);
+
+    // Run action on all active:
+    let all_countries = [2, 3, 4];
+
+    let country_list = [];
+    for (let i = 0; i < all_countries.length; i++) {
+        let current_name = all_countries[i];
+        if (country_button_is_active_for(country_name)) {
+        };
+    };
+};
+
+function country_button_for(country_name) {
+    let country_id = "id-exp-" + country_name;
+    return document.getElementById(country_id);
+};
+
+function country_button_is_active_for(country_name) {
+    let button = country_button_for(country_name);
+    if (button == null) {
+        return false;
+    } else {
+        return button.classList.contains("btn-success");
+    };
+};
+
+function toggle_country_button_for(country_name) {
+    let button = country_button_for(country_name);
+    let is_active = button.classList.contains("btn-success");
+    if (is_active) {
+        button.classList.remove("btn-success");
+        button.classList.add("btn-secondary");
+    } else {
+        button.classList.remove("btn-secondary");
+        button.classList.add("btn-success");
+    };
+};
