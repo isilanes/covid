@@ -27,13 +27,15 @@ async function plot_countries(country_list) {
         return
     };
 
-    // Delete all existing traces/data (if any).
+    // Delete all existing traces/data (if any):
     Plotly.react(graph, [], graph.layout, graph.config)
 
-    let x = [0, 1, 2, 3, 4, 5];
+    // Get data for all countries in list:
     let country_list_data = await get_country_list_data(country_list);
 
+    // Punch all country data into graph:
     for (let i = 0; i < country_list.length; i++) {
+        let x = [0, 1, 2, 3, 4, 5];
         let country_name = country_list[i];
         let country_data = country_list_data[country_name];
         let scatter_points = {
