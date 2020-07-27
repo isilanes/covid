@@ -63,5 +63,5 @@ async function get_country_data(i) {
     );
     response_txt = await response.text();
 
-    return JSON.parse(response_txt)
+    return JSON.parse(response_txt);
 };

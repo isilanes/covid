@@ -1,4 +1,4 @@
-{% extends "master_layout.html" %}
+{% extends "base.html" %}
 {% load login_filters %}
 
 {% block section_name %}
@@ -12,6 +12,6 @@ User
 
 <div>
     <a class="btn btn-lg mt-3 btn-warning" href="/">Cancel</a>
-    <a class="btn btn-lg mt-3 btn-danger" href="{% url 'logout' %}">Log out</a>
+    <a class="btn btn-lg mt-3 btn-danger" href="{% url 'login:logout' %}">Log out</a>
 </div>
 {% endblock %}
