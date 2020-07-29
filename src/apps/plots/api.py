@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 
-from .models import Country
+from .models import Country, DataPoint
 
 
 @csrf_exempt
@@ -16,6 +16,10 @@ def get_country_data(request):
         payload = json.loads(payload)
         country_list = payload["country_list"]
         for country_name in country_list:
-            response[country_name] = [i**country_name for i in range(6)]
+            data_points = DataPoint.objects.filter(country__tag=country_name).order_by("date")
+            response[country_name] = {
+                "x": [dp.date for dp in data_points],
+                "y": [dp.cases for dp in data_points],
+            }
 
     return JsonResponse(response)

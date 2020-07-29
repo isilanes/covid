@@ -13,6 +13,7 @@ class CountryForm(forms.ModelForm):
         data = self.cleaned_data
         country = Country()
         country.name = data["name"]
+        country.tag = data["name"].replace(" ", "_").lower()
         country.save()
 
 

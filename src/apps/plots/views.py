@@ -50,6 +50,7 @@ def show(request):
     context = {
         "show_active": True,
         "cases_plot": core.get_progress_plot_div(),
+        "countries": Country.objects.order_by("name"),
     }
 
     return render(request, "plots/show.html", context)

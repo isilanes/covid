@@ -35,12 +35,11 @@ async function plot_countries(country_list) {
 
     // Punch all country data into graph:
     for (let i = 0; i < country_list.length; i++) {
-        let x = [0, 1, 2, 3, 4, 5];
         let country_name = country_list[i];
         let country_data = country_list_data[country_name];
         let scatter_points = {
-            x: x,
-            y: country_data,
+            x: country_data["x"],
+            y: country_data["y"],
             mode: 'lines+markers',
             marker: {
                 size: 6,
@@ -81,7 +80,7 @@ function toggle_country(country_name) {
     toggle_country_button_for(country_name);
 
     // Run action on all active:
-    let all_countries = [2, 3, 4];
+    let all_countries = ["spain"];
 
     let country_list = [];
     for (let i = 0; i < all_countries.length; i++) {
