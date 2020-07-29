@@ -34,6 +34,11 @@ class Command(BaseCommand):
                 timestamp, cases, deaths, recoveries = line.split(",")
                 timestamp = f"2020/{timestamp}"
                 timestamp = datetime.strptime(timestamp.replace('"', ''), "%Y/%d/%m")
+
+                # Skip DataPoints already in db:
+                if DataPoint.objects.filter(country=country, date=timestamp).exists():
+                    continue
+
                 cases = int(cases.replace('"', ''))
                 deaths = int(deaths.replace('"', ''))
                 recoveries = int(recoveries.replace('"', ''))
