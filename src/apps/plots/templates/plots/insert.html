@@ -16,6 +16,22 @@ Plots
     </form>
 </div>
 
+<div class="data-point-grid mt-4">
+    <div class="data-point-header">Date</div>
+    <div class="data-point-header">Country</div>
+    <div class="data-point-header">Cases</div>
+    <div class="data-point-header">Deaths</div>
+    <div class="data-point-header">Recoveries</div>
+
+    {% for latest in latest_data_points %}
+        <div>{{latest.date}}</div>
+        <div>{{latest.country}}</div>
+        <div>{{latest.cases}}</div>
+        <div>{{latest.deaths}}</div>
+        <div>{{latest.recoveries}}</div>
+    {% endfor %}
+</div>
+
 <div class="ml-3 mt-5">Add country</div>
 <div class="ml-3 mt-3">
     <form method="POST">

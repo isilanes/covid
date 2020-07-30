@@ -80,7 +80,10 @@ function toggle_country(country_name) {
     toggle_country_button_for(country_name);
 
     // Run action on all active:
-    let all_countries = ["spain"];
+    let all_countries = [];
+    for (country_element of document.getElementById("country-list").getElementsByTagName("span")) {
+        all_countries.push(country_element.getAttribute("data-country-tag"));
+    };
 
     let country_list = [];
     for (let i = 0; i < all_countries.length; i++) {

@@ -14,6 +14,12 @@ Plots
 {% endblock %}
 
 {% block body %}
+<span id="country-list">
+    {% for country in countries %}
+    <span data-country-tag="{{country.tag}}"></span>
+    {% endfor %}
+</span>
+
 <div style="height: 1200px;">
     {{cases_plot|safe}}
 </div>
