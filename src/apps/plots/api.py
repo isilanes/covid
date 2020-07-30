@@ -15,11 +15,12 @@ def get_country_data(request):
         payload = request.POST.get("payload", {})
         payload = json.loads(payload)
         country_list = payload["country_list"]
-        for country_name in country_list:
-            data_points = DataPoint.objects.filter(country__tag=country_name).order_by("date")
-            response[country_name] = {
+        for country_tag in country_list:
+            data_points = DataPoint.objects.filter(country__tag=country_tag).order_by("date")
+            response[country_tag] = {
                 "x": [dp.date for dp in data_points],
                 "y": [dp.cases for dp in data_points],
+                "name": Country.objects.get(tag=country_tag).name,
             }
 
     return JsonResponse(response)

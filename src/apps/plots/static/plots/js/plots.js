@@ -35,11 +35,12 @@ async function plot_countries(country_list) {
 
     // Punch all country data into graph:
     for (let i = 0; i < country_list.length; i++) {
-        let country_name = country_list[i];
-        let country_data = country_list_data[country_name];
+        let country_tag = country_list[i];
+        let country_data = country_list_data[country_tag];
         let scatter_points = {
             x: country_data["x"],
             y: country_data["y"],
+            name: country_data["name"],
             mode: 'lines+markers',
             marker: {
                 size: 6,
