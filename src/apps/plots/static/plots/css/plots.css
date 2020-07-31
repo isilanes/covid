@@ -14,7 +14,6 @@
     margin-top: 0px;
     margin-bottom: 0px;
     width: 50%;
-    //justify-items: center;
     //align-items: center;
     grid-template-columns: repeat(5, 1fr);
 }
@@ -28,4 +27,23 @@
 .data-point-header {
     font-weight: bold;
     background-color: #bddddd;
+}
+
+.insert-grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 5px;
+    width: 98%;
+    margin-left: 1%;
+}
+
+.country-list-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    width: 100%;
+}
+
+.country-list-grid > div, form {
+    font-size: 120%;
 }

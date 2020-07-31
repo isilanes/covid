@@ -7,42 +7,43 @@ Plots
 {% endblock %}
 
 {% block body %}
-<div class="ml-3">Add data point</div>
-<div class="ml-3 mt-3">
-    <form method="POST">
-        {% csrf_token %}
-        {{datum_form}}
-        <button class="btn btn-success ml-1" name="datapoint_form" value="true" type="submit">Add</button>
-    </form>
-</div>
+<div class="insert-grid mt-5">
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            {{datum_form}}
+            <button class="btn btn-success ml-1" name="datapoint_form" value="true" type="submit">Add</button>
+        </form>
 
-<div class="data-point-grid mt-4">
-    <div class="data-point-header">Date</div>
-    <div class="data-point-header">Country</div>
-    <div class="data-point-header">Cases</div>
-    <div class="data-point-header">Deaths</div>
-    <div class="data-point-header">Recoveries</div>
+        <div class="data-point-grid mt-4">
+            <div class="data-point-header">Date</div>
+            <div class="data-point-header">Country</div>
+            <div class="data-point-header">Cases</div>
+            <div class="data-point-header">Deaths</div>
+            <div class="data-point-header">Recoveries</div>
 
-    {% for latest in latest_data_points %}
-        <div>{{latest.date}}</div>
-        <div>{{latest.country}}</div>
-        <div>{{latest.cases}}</div>
-        <div>{{latest.deaths}}</div>
-        <div>{{latest.recoveries}}</div>
-    {% endfor %}
-</div>
+            {% for latest in latest_data_points %}
+                <div>{{latest.date}}</div>
+                <div>{{latest.country}}</div>
+                <div>{{latest.cases}}</div>
+                <div>{{latest.deaths}}</div>
+                <div>{{latest.recoveries}}</div>
+            {% endfor %}
+        </div>
+    </div>
 
-<div class="ml-3 mt-5">Add country</div>
-<div class="ml-3 mt-3">
-    <form method="POST">
-        {% csrf_token %}
-        {{country_form}}
-        <button class="btn btn-success ml-1" name="country_form" value="true" type="submit">Add</button>
-    </form>
+    <div class="mt-5" style="justify-items: center;">
+        <div class="country-list-grid">
+            {% for country in countries %}
+            <div>{{country}}</div>
+            {% endfor %}
+        </div>
+
+        <form class="mt-4 ml-0" method="POST">
+            {% csrf_token %}
+            {{country_form}}
+            <button class="btn btn-success ml-1" name="country_form" value="true" type="submit">Add</button>
+        </form>
+    </div>
 </div>
-<ul>
-    {% for country in countries %}
-    <li>{{country}}</li>
-    {% endfor %}
-</ul>
 {% endblock %}
