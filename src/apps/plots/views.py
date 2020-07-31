@@ -24,7 +24,6 @@ def insert(request):
 
 @login_required
 def handle_insert_get(request):
-
     initial = {
         "date": datetime.now() - timedelta(days=1),  # because data we will insert is usually from yesterday
     }

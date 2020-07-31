@@ -8,7 +8,7 @@ Plots
 
 {% block top_left %}
 {% for country in countries %}
-    <button class="btn btn-lg btn-secondary" id="id-exp-{{country.tag}}"
+    <button class="btn btn-lg btn-success" id="id-exp-{{country.tag}}"
             onclick="toggle_country('{{country.tag}}')">{{country.name}}</button>
 {% endfor %}
 {% endblock %}

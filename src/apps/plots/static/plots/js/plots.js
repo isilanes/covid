@@ -17,7 +17,7 @@ function addLoadEvent(func) {
 };
 
 function on_plot_view_load() {
-    plot_countries([]);
+    plot_all_active_countries();
 };
 
 async function plot_countries(country_list) {
@@ -77,23 +77,8 @@ async function get_country_list_data(country_list) {
 };
 
 function toggle_country(country_name) {
-    // Toggle this button:
     toggle_country_button_for(country_name);
-
-    // Run action on all active:
-    let all_countries = [];
-    for (country_element of document.getElementById("country-list").getElementsByTagName("span")) {
-        all_countries.push(country_element.getAttribute("data-country-tag"));
-    };
-
-    let country_list = [];
-    for (let i = 0; i < all_countries.length; i++) {
-        let current_name = all_countries[i];
-        if (country_button_is_active_for(current_name)) {
-            country_list.push(current_name);
-        };
-    };
-    plot_countries(country_list);
+    plot_all_active_countries();
 };
 
 function country_button_for(country_name) {
@@ -120,4 +105,20 @@ function toggle_country_button_for(country_name) {
         button.classList.remove("btn-secondary");
         button.classList.add("btn-success");
     };
+};
+
+function plot_all_active_countries() {
+    let all_countries = [];
+    for (country_element of document.getElementById("country-list").getElementsByTagName("span")) {
+        all_countries.push(country_element.getAttribute("data-country-tag"));
+    };
+
+    let country_list = [];
+    for (let i = 0; i < all_countries.length; i++) {
+        let current_name = all_countries[i];
+        if (country_button_is_active_for(current_name)) {
+            country_list.push(current_name);
+        };
+    };
+    plot_countries(country_list);
 };
