@@ -21,6 +21,7 @@ def get_country_data(request):
                 "x": [dp.date for dp in data_points],
                 "y": [dp.cases for dp in data_points],
                 "name": Country.objects.get(tag=country_tag).name,
+                "color": Country.objects.get(tag=country_tag).line_color,
             }
 
     return JsonResponse(response)

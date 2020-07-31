@@ -4,6 +4,7 @@ from django.db import models
 class Country(models.Model):
     name = models.CharField('Name', max_length=50)
     tag = models.CharField('Tag', max_length=50)
+    line_color = models.CharField('Color', max_length=8, default="#000000")
 
     def __str__(self):
         return self.name

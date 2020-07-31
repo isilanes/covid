@@ -45,10 +45,12 @@ async function plot_countries(country_list) {
             marker: {
                 size: 6,
                 type: 'scatter',
+                color: country_data["color"],
             },
             line: {
                 size: 3,
                 dash: "dash",
+                color: country_data["color"],
             }
         };
         graph.data = graph.data.concat(scatter_points)
