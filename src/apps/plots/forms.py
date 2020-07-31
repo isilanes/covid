@@ -11,6 +11,11 @@ class CountryForm(forms.ModelForm):
 
     def save(self):
         data = self.cleaned_data
+
+        # Avoid duplicates:
+        if Country.objects.filter(name=data["name"]).exists():
+            return
+
         country = Country()
         country.name = data["name"]
         country.tag = data["name"].replace(" ", "_").lower()

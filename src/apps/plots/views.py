@@ -32,9 +32,9 @@ def handle_insert_get(request):
     for country in Country.objects.all():
         latest = DataPoint.objects.filter(country=country).order_by("date").last()
         if latest is not None:
-            latest_data_points.append((latest.date, country, latest))
+            latest_data_points.append((country, latest))
 
-    latest_data_points = [l for _, _, l in sorted(latest_data_points, reverse=True)]
+    latest_data_points = [l for _, l in sorted(latest_data_points)]
 
     context = {
         "insert_active": True,
