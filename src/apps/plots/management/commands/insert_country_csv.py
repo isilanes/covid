@@ -49,4 +49,3 @@ class Command(BaseCommand):
                                        deaths=deaths,
                                        recoveries=recoveries)
                 data_point.save()
-

@@ -25,7 +25,7 @@ def insert(request):
 @login_required
 def handle_insert_get(request):
     initial = {
-        "date": datetime.now() - timedelta(days=1),  # because data we will insert is usually from yesterday
+        "date": datetime.now() - timedelta(days=1),  # usually we insert data from yesterday
     }
     latest_data_points = []
     for country in Country.objects.all():
