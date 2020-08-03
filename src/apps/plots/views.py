@@ -1,11 +1,11 @@
-from datetime import datetime, timedelta
-
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 from . import core
-from .models import Country, DataPoint
+from .models import Country
 from .forms import CountryForm, DataPointForm
+from .handle_views.get.insert import handle_insert_get
+from .handle_views.post.insert import handle_insert_post
 
 
 @login_required
@@ -18,39 +18,6 @@ def insert(request):
 
     if request.POST.get("datapoint_form") is not None:
         return handle_insert_post(request, DataPointForm)
-
-    return handle_insert_get(request)
-
-
-@login_required
-def handle_insert_get(request):
-    initial = {
-        "date": datetime.now() - timedelta(days=1),  # usually we insert data from yesterday
-    }
-    latest_data_points = []
-    for country in Country.objects.all():
-        latest = DataPoint.objects.filter(country=country).order_by("date").last()
-        if latest is not None:
-            latest_data_points.append((country, latest))
-
-    latest_data_points = [l for _, l in sorted(latest_data_points)]
-
-    context = {
-        "insert_active": True,
-        "country_form": CountryForm(),
-        "datum_form": DataPointForm(initial=initial),
-        "countries": Country.objects.order_by("name"),
-        "latest_data_points": latest_data_points,
-    }
-
-    return render(request, "plots/insert.html", context)
-
-
-@login_required
-def handle_insert_post(request, WhichForm):
-    form = WhichForm(request.POST)
-    if form.is_valid():
-        form.save()
 
     return handle_insert_get(request)
 
