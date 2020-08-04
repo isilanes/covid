@@ -11,6 +11,11 @@ Plots
     <button class="btn btn-lg btn-success" id="id-exp-{{country.tag}}"
             onclick="toggle_country('{{country.tag}}')">{{country.name}}</button>
 {% endfor %}
+
+<div class="btn-group ml-2" id="id-which-case">
+    <button class="btn btn-primary btn-lg" id="id-show-cases" onclick="show_cases()">Cases</button>
+    <button class="btn btn-secondary btn-lg" id="id-show-deaths" onclick="show_deaths()">Deaths</button>
+</div>
 {% endblock %}
 
 {% block body %}

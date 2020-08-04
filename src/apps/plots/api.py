@@ -19,7 +19,8 @@ def get_country_data(request):
             data_points = DataPoint.objects.filter(country__tag=country_tag).order_by("date")
             response[country_tag] = {
                 "x": [dp.date for dp in data_points],
-                "y": [dp.cases for dp in data_points],
+                "Cases": [dp.cases for dp in data_points],
+                "Deaths": [dp.deaths for dp in data_points],
                 "name": Country.objects.get(tag=country_tag).name,
                 "color": Country.objects.get(tag=country_tag).line_color,
             }

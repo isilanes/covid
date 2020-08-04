@@ -30,6 +30,14 @@ async function plot_countries(country_list) {
     // Delete all existing traces/data (if any):
     Plotly.react(graph, [], graph.layout, graph.config)
 
+    // Get which case we want to plot (cases or deaths):
+    let which_case = "";
+    for (element of document.getElementById("id-which-case").getElementsByTagName("button")) {
+        if (element.classList.contains('btn-primary')) {
+            which_case = element.innerHTML;
+        };
+    };
+
     // Get data for all countries in list:
     let country_list_data = await get_country_list_data(country_list);
 
@@ -39,7 +47,7 @@ async function plot_countries(country_list) {
         let country_data = country_list_data[country_tag];
         let scatter_points = {
             x: country_data["x"],
-            y: country_data["y"],
+            y: country_data[which_case],
             name: country_data["name"],
             mode: 'lines+markers',
             marker: {
@@ -123,4 +131,28 @@ function plot_all_active_countries() {
         };
     };
     plot_countries(country_list);
+};
+
+function show_cases() {
+    let cases_button = document.getElementById("id-show-cases");
+    cases_button.classList.remove("btn-secondary");
+    cases_button.classList.add("btn-primary");
+
+    let deaths_button = document.getElementById("id-show-deaths");
+    deaths_button.classList.remove("btn-primary");
+    deaths_button.classList.add("btn-secondary");
+
+    plot_all_active_countries();
+};
+
+function show_deaths() {
+    let cases_button = document.getElementById("id-show-cases");
+    cases_button.classList.remove("btn-primary");
+    cases_button.classList.add("btn-secondary");
+
+    let deaths_button = document.getElementById("id-show-deaths");
+    deaths_button.classList.remove("btn-secondary");
+    deaths_button.classList.add("btn-primary");
+
+    plot_all_active_countries();
 };
