@@ -1,0 +1,7 @@
+django
+coverage
+flake8
+requests
+plotly
+radon
+bs4
