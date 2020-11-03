@@ -3,6 +3,7 @@ from django.db import models
 
 class Country(models.Model):
     name = models.CharField('Name', max_length=50)
+    iso = models.CharField('ISO code', max_length=6, default="xxx")
     tag = models.CharField('Tag', max_length=50)
     line_color = models.CharField('Color', max_length=8, default="#000000")
 
