@@ -51,31 +51,38 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         country_iso = kwargs.get("country")
+        if country_iso is None:
+            countries = Country.objects.order_by("name")
+        else:
+            countries = Country.objects.filter(iso=country_iso)  # we want a list (query set)
+
         start_date = kwargs.get("date_from")
+        if start_date is None:
+            start_date = (datetime.today() - timedelta(days=1)).strftime("%Y-%m-%d")
+
         end_date = kwargs.get("date_to")
         if end_date is None:
             end_date = start_date
 
-        country = Country.objects.get(iso=country_iso)
+        for country in countries:
+            timestamp = datetime.strptime(start_date, "%Y-%m-%d")
+            timestamp_end = datetime.strptime(end_date, "%Y-%m-%d")
+            while timestamp <= timestamp_end:
+                # Skip DataPoints already in db:
+                if DataPoint.objects.filter(country=country, date=timestamp).exists():
+                    print(timestamp, country, "skip")
+                    timestamp += timedelta(days=1)
+                    continue
 
-        timestamp = datetime.strptime(start_date, "%Y-%m-%d")
-        timestamp_end = datetime.strptime(end_date, "%Y-%m-%d")
-        while timestamp <= timestamp_end:
-            # Skip DataPoints already in db:
-            if DataPoint.objects.filter(country=country, date=timestamp).exists():
-                print(timestamp, country, "skip")
+                cases, deaths, recoveries = get_data_for(country.iso, timestamp)
+
+                data_point = DataPoint(country=country,
+                                       date=timestamp,
+                                       cases=cases,
+                                       deaths=deaths,
+                                       recoveries=recoveries)
+                data_point.save()
+
+                print(data_point, data_point.cases, data_point.deaths)
+
                 timestamp += timedelta(days=1)
-                continue
-
-            cases, deaths, recoveries = get_data_for(country_iso, timestamp)
-
-            data_point = DataPoint(country=country,
-                                   date=timestamp,
-                                   cases=cases,
-                                   deaths=deaths,
-                                   recoveries=recoveries)
-            data_point.save()
-
-            print(data_point, data_point.cases, data_point.deaths)
-
-            timestamp += timedelta(days=1)
